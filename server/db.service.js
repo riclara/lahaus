@@ -24,7 +24,7 @@ class DbService {
           ...values
         }
       }
-      this.urlsColl.findOneAndUpdate(filter, doc, {upsert: true}, (err, doc) => {
+      this.urlsColl.findOneAndUpdate(filter, doc, {upsert: true, returnOriginal: false}, (err, doc) => {
         if (err) return reject(err)
         if (doc && doc.value && doc.value._id) return resolve(doc.value.key)
         else reject(new Error('The url was not inserted'))
